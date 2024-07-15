@@ -43,26 +43,22 @@ const Departments = () => {
   ];
 
   const responsive = {
-    extraLarge: {
-      breakpoint: { max: 3000, min: 1324 },
-      items: 4,
-      slidesToSlide: 1, // optional, default to 1.
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
     },
-    large: {
-      breakpoint: { max: 1324, min: 1005 },
-      items: 3,
-      slidesToSlide: 1, // optional, default to 1.
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
     },
-    medium: {
-      breakpoint: { max: 1005, min: 700 },
-      items: 2,
-      slidesToSlide: 1, // optional, default to 1.
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
     },
-    small: {
-      breakpoint: { max: 700, min: 0 },
-      items: 1,
-      slidesToSlide: 1, // optional, default to 1.
-    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
   };
 
   return (
@@ -72,8 +68,6 @@ const Departments = () => {
         <Carousel
           responsive={responsive}
           removeArrowOnDeviceType={[
-            // "superLargeDesktop",
-            // "desktop",
             "tablet",
             "mobile",
           ]}

@@ -12,9 +12,7 @@ const MessageForm = () => {
   const handleMessage = async (e) => {
     e.preventDefault();
     try {
-      await axios
-        .post(
-          "http://localhost:4000/api/v1/message/send",
+      await axios.post("http://localhost:4000/api/v1/message/send",
           { firstName, lastName, email, phone, message },
           {
             withCredentials: true,
@@ -68,7 +66,7 @@ const MessageForm = () => {
             />
           </div>
           <textarea
-            rows={7}
+            rows={8}
             placeholder="Message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -77,7 +75,6 @@ const MessageForm = () => {
             <button type="submit">Send</button>
           </div>
         </form>
-        <img src="/Vector.png" alt="vector" />
       </div>
     </>
   );

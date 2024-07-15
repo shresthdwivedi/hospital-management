@@ -89,7 +89,7 @@ const Register = () => {
           <div>
             <input
               type="number"
-              placeholder="NIC"
+              placeholder="NIC (13 digits)"
               value={nic}
               onChange={(e) => setNic(e.target.value)}
             />

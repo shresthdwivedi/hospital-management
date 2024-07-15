@@ -31,33 +31,31 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={"container"}>
-        <div className="logo">
+    <nav className={"container"}>
+      <div className={show ? "navLinks showmenu" : "navLinks"}>
+        <div className="links">
+          <Link to={"/"} onClick={() => setShow(!show)}>
+            Home
+          </Link>
+          <Link to={"/appointment"} onClick={() => setShow(!show)}>
+            Appointment
+          </Link>
         </div>
-        <div className={show ? "navLinks showmenu" : "navLinks"}>
-          <div className="links">
-            <Link to={"/"} onClick={() => setShow(!show)}>
-              Home
-            </Link>
-            <Link to={"/appointment"} onClick={() => setShow(!show)}>
-              Appointment
-            </Link>
-          </div>
-          {isAuthenticated ? (
-            <button className="logoutBtn btn" onClick={handleLogout}>
-              LOGOUT
-            </button>
-          ) : (
-            <button className="loginBtn btn" onClick={goToLogin}>
-              LOGIN
-            </button>
-          )}
-        </div>
-        <div className="hamburger" onClick={() => setShow(!show)}>
-          <GiHamburgerMenu />
-        </div>
-      </nav>
-    </>
+        {isAuthenticated ? (
+          <button className="logoutBtn btn" onClick={handleLogout}>
+            LOGOUT
+          </button>
+        ) : (
+          <button className="loginBtn btn" onClick={goToLogin}>
+            LOGIN
+          </button>
+        )}
+      </div>
+      <div className="hamburger" onClick={() => setShow(!show)}>
+        <GiHamburgerMenu />
+      </div>
+    </nav>
+  </>
   );
 };
 

@@ -192,13 +192,7 @@ const AppointmentForm = () => {
             onChange={(e) => setAddress(e.target.value)}
             placeholder="Address"
           />
-          <div
-            style={{
-              gap: "10px",
-              justifyContent: "flex-end",
-              flexDirection: "row",
-            }}
-          >
+          <div style={{gap: "10px", justifyContent: "flex-end", flexDirection: "row"}}>
             <p style={{ marginBottom: 0 }}>Have you visited before?</p>
             <input
               type="checkbox"
