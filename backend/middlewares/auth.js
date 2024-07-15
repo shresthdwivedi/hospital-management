@@ -3,7 +3,7 @@ import { catchAsyncErrors } from "./catchAsyncErrors.js";
 import ErrorHandler from "./error.js";
 import jwt from "jsonwebtoken";
 
-// Middleware to authenticate dashboard users
+// to both authenticate and authorize dashboard users
 export const isAdminAuthenticated = catchAsyncErrors(
   async (req, res, next) => {
     const token = req.cookies.adminToken;
@@ -23,7 +23,7 @@ export const isAdminAuthenticated = catchAsyncErrors(
   }
 );
 
-// Middleware to authenticate frontend users
+// to both authenticate and authorize frontend users
 export const isPatientAuthenticated = catchAsyncErrors(
   async (req, res, next) => {
     const token = req.cookies.patientToken;
