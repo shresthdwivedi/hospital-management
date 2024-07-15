@@ -1,11 +1,14 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-export const dbConneciton = () => {
-    mongoose.connect(process.env.MONGO_URI,{
-        dbName: 'hospital-management'
-    }).then(() => {
-        console.log('Connected to MongoDB')
-    }).catch(err => {
-        console.log(`Some error occured while connecting to MongoDB: ${err}`)
+
+export const dbConnection = () => {
+  mongoose.connect(process.env.MONGO_URI , {
+      dbName: "hospital-management",
     })
-}
+    .then(() => {
+      console.log("Connected to database!");
+    })
+    .catch((err) => {
+      console.log("Some error occured while connecting to database:", err);
+    });
+};
