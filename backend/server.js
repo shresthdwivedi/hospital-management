@@ -14,7 +14,7 @@ config({ path: "./config.env" });
 
 app.use(
   cors({
-    origin: [FRONTEND_URL, DASHBOARD_URL],
+    origin: ["https://hospital-management-v1.vercel.app", "https://hospital-management-dashboar-v1.vercel.app"],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
@@ -28,14 +28,10 @@ app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/appointment", appointmentRouter);
 
-app.get('/', (res, req) => {
-  res.json("Express running on Vercel")
-})
-
 dbConnection();
 
 app.use(errorMiddleware);
 
-app.listen(3000, () => {
-  console.log(`Server listening at port 3000`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening at port ${process.env.PORT}`);
 });
