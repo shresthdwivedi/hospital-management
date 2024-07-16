@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { Mongoose } from "mongoose";
 import validator from "validator";
 
 const appointmentSchema = new mongoose.Schema({
@@ -47,16 +46,6 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: [true, "Department Name Is Required!"],
   },
-  doctor: {
-    firstName: {
-      type: String,
-      required: [true, "Doctor Name Is Required!"],
-    },
-    lastName: {
-      type: String,
-      required: [true, "Doctor Name Is Required!"],
-    },
-  },
   hasVisited: {
     type: Boolean,
     default: false,
@@ -64,10 +53,6 @@ const appointmentSchema = new mongoose.Schema({
   address: {
     type: String,
     required: [true, "Address Is Required!"],
-  },
-  doctorId: {
-    type: mongoose.Schema.ObjectId,
-    required: [true, "Doctor Id Is Invalid!"],
   },
   patientId: {
     type: mongoose.Schema.ObjectId,

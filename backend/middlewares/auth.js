@@ -3,7 +3,7 @@ import { catchAsyncErrors } from "./catchAsyncErrors.js";
 import ErrorHandler from "./error.js";
 import jwt from "jsonwebtoken";
 
-// to both authenticate and authorize dashboard users
+// Middleware to authenticate dashboard users
 export const isAdminAuthenticated = catchAsyncErrors(
   async (req, res, next) => {
     const token = req.cookies.adminToken;
@@ -23,7 +23,7 @@ export const isAdminAuthenticated = catchAsyncErrors(
   }
 );
 
-// to both authenticate and authorize frontend users
+// Middleware to authenticate frontend users
 export const isPatientAuthenticated = catchAsyncErrors(
   async (req, res, next) => {
     const token = req.cookies.patientToken;
@@ -40,16 +40,3 @@ export const isPatientAuthenticated = catchAsyncErrors(
     next();
   }
 );
-
-export const isAuthorized = (...roles) => {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      return next(
-        new ErrorHandler(
-          `${req.user.role} not allowed to access this resource!`
-        )
-      );
-    }
-    next();
-  };
-};

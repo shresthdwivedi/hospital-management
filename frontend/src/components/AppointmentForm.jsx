@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -13,8 +13,6 @@ const AppointmentForm = () => {
   const [gender, setGender] = useState("");
   const [appointmentDate, setAppointmentDate] = useState("");
   const [department, setDepartment] = useState("Pediatrics");
-  const [doctorFirstName, setDoctorFirstName] = useState("");
-  const [doctorLastName, setDoctorLastName] = useState("");
   const [address, setAddress] = useState("");
   const [hasVisited, setHasVisited] = useState(false);
 
@@ -30,18 +28,6 @@ const AppointmentForm = () => {
     "ENT",
   ];
 
-  const [doctors, setDoctors] = useState([]);
-  useEffect(() => {
-    const fetchDoctors = async () => {
-      const { data } = await axios.get(
-        "http://localhost:4000/api/v1/user/doctors",
-        { withCredentials: true }
-      );
-      setDoctors(data.doctors);
-      console.log(data.doctors);
-    };
-    fetchDoctors();
-  }, []);
   const handleAppointment = async (e) => {
     e.preventDefault();
     try {
@@ -58,8 +44,6 @@ const AppointmentForm = () => {
           gender,
           appointment_date: appointmentDate,
           department,
-          doctor_firstName: doctorFirstName,
-          doctor_lastName: doctorLastName,
           hasVisited: hasVisitedBool,
           address,
         },
@@ -78,8 +62,6 @@ const AppointmentForm = () => {
         setGender(""),
         setAppointmentDate(""),
         setDepartment(""),
-        setDoctorFirstName(""),
-        setDoctorLastName(""),
         setHasVisited(""),
         setAddress("");
     } catch (error) {
@@ -139,6 +121,7 @@ const AppointmentForm = () => {
               <option value="">Select Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
+              <option value="Others">Others</option>
             </select>
             <input
               type="date"
@@ -163,27 +146,6 @@ const AppointmentForm = () => {
                   </option>
                 );
               })}
-            </select>
-            <select
-              value={`${doctorFirstName} ${doctorLastName}`}
-              onChange={(e) => {
-                const [firstName, lastName] = e.target.value.split(" ");
-                setDoctorFirstName(firstName);
-                setDoctorLastName(lastName);
-              }}
-              disabled={!department}
-            >
-              <option value="">Select Doctor</option>
-              {doctors
-                .filter((doctor) => doctor.doctorDepartment === department)
-                .map((doctor, index) => (
-                  <option
-                    value={`${doctor.firstName} ${doctor.lastName}`}
-                    key={index}
-                  >
-                    {doctor.firstName} {doctor.lastName}
-                  </option>
-                ))}
             </select>
           </div>
           <textarea
