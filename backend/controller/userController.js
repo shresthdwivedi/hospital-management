@@ -116,8 +116,10 @@ export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
   res
     .status(201)
     .cookie("adminToken", "", {
-      httpOnly: true,
       expires: new Date(Date.now()),
+      httpOnly: true,
+      sameSite: "None",
+      secure: true
     })
     .json({
       success: true,
@@ -130,8 +132,10 @@ export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
   res
     .status(201)
     .cookie("patientToken", "", {
-      httpOnly: true,
       expires: new Date(Date.now()),
+      httpOnly: true,
+      sameSite: "None",
+      secure: true
     })
     .json({
       success: true,
