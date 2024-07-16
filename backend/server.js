@@ -9,17 +9,16 @@ import userRouter from "./router/userRouter.js";
 import appointmentRouter from "./router/appointmentRouter.js";
 
 const app = express();
+
 config({ path: "./config.env" });
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
+    origin: [FRONTEND_URL, DASHBOARD_URL],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
-
-app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -29,10 +28,14 @@ app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/appointment", appointmentRouter);
 
+app.get('/', (res, req) => {
+  res.json("Express running on Vercel")
+})
+
 dbConnection();
 
 app.use(errorMiddleware);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server listening at port ${process.env.PORT}`);
+app.listen(3000, () => {
+  console.log(`Server listening at port 3000`);
 });
