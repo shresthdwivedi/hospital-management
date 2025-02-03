@@ -8,7 +8,7 @@ import { Context } from "../main";
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
-
+  const navigate = useNavigate();
   const handleLogout = async () => {
     await axios
       .get("https://hospital-management-backend-bm01.onrender.com/api/v1/user/patient/logout", {
@@ -40,6 +40,9 @@ const Navbar = () => {
           <Link to={"/appointment"} onClick={() => setShow(!show)}>
             Appointment
           </Link>
+          <a href="https://hospital-management-dashboar-v1.vercel.app/" target="_blank" rel="noopener noreferrer">
+            Dashboard
+          </a>
         </div>
         {isAuthenticated ? (
           <button className="logoutBtn btn" onClick={handleLogout}>
